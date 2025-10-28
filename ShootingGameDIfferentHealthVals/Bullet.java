@@ -9,13 +9,18 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Bullet extends Actor
 {
     final int targetScore = 11;
-    /**
-     * Act - do whatever the Bullet wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    int xMove, yMove = 0;
+    int bSpeedMult = 3;
+    
+    public Bullet(int x, int y)
+    {
+        xMove = x*bSpeedMult;
+        yMove = y*bSpeedMult;
+    }
+    
     public void act() 
     {
-        setLocation(getX(), getY() - 5);
+        setLocation(getX() + xMove, getY() + yMove);
         
         Enemy e = (Enemy) getOneIntersectingObject(Enemy.class);  
         Enemy2 e2 = (Enemy2) getOneIntersectingObject(Enemy2.class);  
@@ -49,6 +54,7 @@ public class Bullet extends Actor
         else if (getY() < 5)
         {
             getWorld().removeObject(this);
+            
         }
     }    
 }

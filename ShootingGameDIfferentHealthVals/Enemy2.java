@@ -20,7 +20,6 @@ public class Enemy2 extends Actor
     public void act() 
     {
         timeCount++;
-        System.out.println(timeCount);
         if (timeCount >= 200)
         {
             setImage(lbGlow);

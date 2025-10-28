@@ -29,15 +29,27 @@ public class MyWorld extends greenfoot.World
         
         addObject(new Hero(), getWidth()/2, getHeight() - 50);
         
-        for (int x = 0; x < numEnemies; x++)
+        for (int x = 0; x < numEnemies/2; x++)
         {
             if (Greenfoot.getRandomNumber(2) == 0)
             {
-                addObject(new Enemy(), Greenfoot.getRandomNumber(600), 100);
+                addObject(new Enemy(), 40, Greenfoot.getRandomNumber(400));
             }
             else
             {
-                addObject(new Enemy2(1), Greenfoot.getRandomNumber(600), 100);
+                addObject(new Enemy2(1), 40, Greenfoot.getRandomNumber(400));
+            }
+        }
+        
+        for (int x = 0; x < numEnemies/2; x++)
+        {
+            if (Greenfoot.getRandomNumber(2) == 0)
+            {
+                addObject(new Enemy(), 560, Greenfoot.getRandomNumber(400));
+            }
+            else
+            {
+                addObject(new Enemy2(1), 560, Greenfoot.getRandomNumber(400));
             }
         }
         
