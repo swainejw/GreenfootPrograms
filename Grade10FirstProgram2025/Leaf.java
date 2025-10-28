@@ -9,11 +9,13 @@ public class Leaf extends Actor
     
     public void act()
     {
-        setLocation(getX() + 5, getY());
+        setLocation(getX(), getY() - 5);
         
         Fish f = (Fish) getOneIntersectingObject(Fish.class);
         if (f != null)
         {
+            // add 1 to the counter
+            MyWorld.score.add(1);
             getWorld().removeObject(f);
             getWorld().removeObject(this);
             return;

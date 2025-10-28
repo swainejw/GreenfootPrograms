@@ -14,9 +14,9 @@ public class Seaweed extends Actor
      */
     public void act()
     {
-        setLocation(getX() - 5, getY());
+        setLocation(getX(), getY() + 5);
         
-        if (getX() < 10)
+        if (getY() > 390)
         {
             getWorld().removeObject(this);
             return;

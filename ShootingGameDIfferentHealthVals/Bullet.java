@@ -11,6 +11,7 @@ public class Bullet extends Actor
     final int targetScore = 11;
     int xMove, yMove = 0;
     int bSpeedMult = 3;
+    boolean debug = false;
     
     public Bullet(int x, int y)
     {
@@ -24,6 +25,10 @@ public class Bullet extends Actor
         
         Enemy e = (Enemy) getOneIntersectingObject(Enemy.class);  
         Enemy2 e2 = (Enemy2) getOneIntersectingObject(Enemy2.class);  
+        
+        if (!debug)
+            System.out.println(e);
+        
         
         if (e != null)
         {

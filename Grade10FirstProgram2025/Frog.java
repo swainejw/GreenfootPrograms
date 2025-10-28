@@ -6,19 +6,11 @@ public class Frog extends Actor
 
     public void act()
     {
-        if (Greenfoot.isKeyDown("s"))
-        {
-            setLocation(getX(), getY() + 5);
-        }
-        if (Greenfoot.isKeyDown("w"))
-        {
-            setLocation(getX(), getY() - 5);
-        }
-        if (Greenfoot.isKeyDown("a"))
+        if (Greenfoot.isKeyDown("a") || Greenfoot.isKeyDown("left"))
         {
             setLocation(getX() - 5, getY());
         }
-        if (Greenfoot.isKeyDown("d"))
+        if (Greenfoot.isKeyDown("d") || Greenfoot.isKeyDown("right"))
         {
             setLocation(getX() + 5, getY());
         }

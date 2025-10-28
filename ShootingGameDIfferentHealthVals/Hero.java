@@ -41,7 +41,6 @@ public class Hero extends Actor
             setLocation(getX() + xMove, getY() + yMove);
         }
             
-            
         
         // So this line says ... if the user hits space AND more than 0.25 sec has elapsed, then 
         // add a bullet to the screen.  Otherwise, it won't allow it.
