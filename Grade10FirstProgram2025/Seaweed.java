@@ -25,9 +25,7 @@ public class Seaweed extends Actor
         Frog f = (Frog) getOneIntersectingObject(Frog.class);
         if (f != null)
         {
-            getWorld().removeObject(f);
-            getWorld().removeObject(this);
-            return;
+            Greenfoot.setWorld(new LoseWorld());
         }
     }
 }

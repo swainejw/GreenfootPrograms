@@ -16,6 +16,10 @@ public class Leaf extends Actor
         {
             // add 1 to the counter
             MyWorld.score.add(1);
+            if (MyWorld.score.getValue() == 5)
+            {
+                Greenfoot.setWorld(new WinWorld());
+            }
             getWorld().removeObject(f);
             getWorld().removeObject(this);
             return;
@@ -26,5 +30,7 @@ public class Leaf extends Actor
             getWorld().removeObject(this);
             return;
         }
+        
+        
     }
 }
