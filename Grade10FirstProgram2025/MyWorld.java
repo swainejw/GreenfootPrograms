@@ -12,7 +12,7 @@ public class MyWorld extends World
         super(600, 400, 1); 
         addObject(score, 70, 383);
         score.setValue(0);
-        addObject(new Frog(), 300, 365);
+        addObject(new Frog(), 300, 355);
         
         for (int x = 0; x < numFish; x++)
         {
@@ -20,5 +20,10 @@ public class MyWorld extends World
             addObject(new Fish(), 67 + x*120, 35);
         }
         
+    }
+    
+    public void act()
+    {
+    
     }
 }

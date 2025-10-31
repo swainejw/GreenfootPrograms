@@ -19,7 +19,7 @@ public class Hero extends Actor
     
     public Hero()
     {
-        setImage(d2);
+        setImage(d1);
         t.mark();
     }
 
