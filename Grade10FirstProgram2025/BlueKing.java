@@ -1,6 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-public class Frog extends Actor
+public class BlueKing extends Actor
 {
     SimpleTimer t = new SimpleTimer();
 
@@ -14,9 +14,9 @@ public class Frog extends Actor
         {
             setLocation(getX() + 5, getY());
         }
-        if (Greenfoot.isKeyDown("space") && t.millisElapsed() > 1000)
+        if (Greenfoot.isKeyDown("space") && t.millisElapsed() > 100)
         {
-            getWorld().addObject(new Leaf(), getX(), getY());
+            getWorld().addObject(new Arrow(), getX(), getY() - getImage().getWidth()/2);
             t.mark();
         }
     }

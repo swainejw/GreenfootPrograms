@@ -3,7 +3,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 public class MyWorld extends World
 {
-    int numFish = 5;
+    int numSpearGoblin = 5;
     public static Counter score = new Counter();
     
     public MyWorld()
@@ -12,12 +12,18 @@ public class MyWorld extends World
         super(600, 400, 1); 
         addObject(score, 70, 383);
         score.setValue(0);
-        addObject(new Frog(), 300, 355);
+        addObject(new BlueKing(), 300, 355);
         
-        for (int x = 0; x < numFish; x++)
+        for (int x = 0; x < numSpearGoblin; x++)
         {
             // 67 is init value, 120 is spacing
-            addObject(new Fish(), 67 + x*120, 35);
+            addObject(new SpearGoblin(), 67 + x*120, 115);
+        }
+        
+        for (int x = 0; x < numSpearGoblin; x++)
+        {
+            // 67 is init value, 120 is spacing
+            addObject(new MiniPekka(), 67 + x*120, 45);
         }
         
     }

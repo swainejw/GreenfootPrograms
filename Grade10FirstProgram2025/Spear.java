@@ -6,12 +6,13 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Seaweed extends Actor
+public class Spear extends Actor
 {
-    /**
-     * Act - do whatever the Seaweed wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    public Spear()
+    {
+        setRotation(45);
+    }
+    
     public void act()
     {
         setLocation(getX(), getY() + 5);
@@ -22,7 +23,7 @@ public class Seaweed extends Actor
             return;
         }
         
-        Frog f = (Frog) getOneIntersectingObject(Frog.class);
+        BlueKing f = (BlueKing) getOneIntersectingObject(BlueKing.class);
         if (f != null)
         {
             Greenfoot.setWorld(new LoseWorld());
