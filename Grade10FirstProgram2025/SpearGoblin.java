@@ -5,7 +5,7 @@ public class SpearGoblin extends Actor
     int xMove = 5;
     int health = 2;
     SimpleTimer tSpearGoblin = new SimpleTimer();
-    int rn = Greenfoot.getRandomNumber(3000);
+    int rn = Greenfoot.getRandomNumber(6000);
     
     // public SpearGoblin()
     // {
@@ -16,7 +16,7 @@ public class SpearGoblin extends Actor
     {
         setLocation(getX() - xMove, getY());
         
-        if (getX() < 10 || getX() > 590)
+        if (getX() < 10 || getX() > getWorld().getHeight()-10)
         {
             xMove *= -1;
         }
@@ -25,7 +25,7 @@ public class SpearGoblin extends Actor
         {
             getWorld().addObject(new Spear(), getX(), getY());
             tSpearGoblin.mark();
-            rn = Greenfoot.getRandomNumber(999000);
+            rn = Greenfoot.getRandomNumber(6000);
         }
     }
 }

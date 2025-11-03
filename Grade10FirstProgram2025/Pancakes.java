@@ -1,18 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-/**
- * Write a description of class Seaweed here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
-public class Spear extends Actor
+public class Pancakes extends Actor
 {
-    public Spear()
-    {
-        setRotation(45);
-    }
-    
     public void act()
     {
         setLocation(getX(), getY() + 5);
