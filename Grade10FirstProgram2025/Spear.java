@@ -2,7 +2,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 public class Spear extends Actor
 {
-    int sSpeed = -5;
+    int sSpeed = 5;
     // ADD A COMMENT HERE TO EXPLAIN THIS BIT OF CODE
     public Spear()
     {
