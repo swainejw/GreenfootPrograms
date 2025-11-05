@@ -46,8 +46,8 @@ public class MyWorld extends World
         }
         
         // ADD A COMMENT HERE TO EXPLAIN THIS BIT OF CODE
-        List allSpearGoblins = this.getObjects(SpearGoblin.class);
-        List allMiniPekkas = this.getObjects(MiniPekka.class);
+        List allSpearGoblins = getObjects(SpearGoblin.class);
+        List allMiniPekkas = getObjects(MiniPekka.class);
         if (allSpearGoblins.size() + allMiniPekkas.size() == 0)
         {
             Greenfoot.setWorld(new WinWorld());
