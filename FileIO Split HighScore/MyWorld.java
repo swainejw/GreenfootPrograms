@@ -9,14 +9,14 @@ public class MyWorld extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1); 
-        addObject(new SaveScore(), getWidth()/2 - 50, 100);
-        addObject(new Label("Save Score", 24), getWidth()/2 + 80, 100);
+        addObject(new SaveScore(), getWidth()/2 - 50, 175);
+        addObject(new Label("Save Score", 24), getWidth()/2 + 80, 175);
         
-        addObject(new ShowHS(), getWidth()/2 - 50, 175);
-        addObject(new Label("Show High Score", 24), getWidth()/2 + 80, 175);
+        addObject(new ShowHS(), getWidth()/2 - 50, 250);
+        addObject(new Label("Show High Score", 24), getWidth()/2 + 80, 250);
         
-        addObject(new PressMe(), getWidth()/2 - 50, 250);
-        addObject(new Label("Increase Score", 24), getWidth()/2 + 80, 250);
+        addObject(new PressMe(), getWidth()/2 - 50, 100);
+        addObject(new Label("Increase Score", 24), getWidth()/2 + 80, 100);
         
         addObject(new ShowXScores(), getWidth()/2 - 50, 325);
         addObject(new Label("Top X Scores", 24), getWidth()/2 + 80, 325);

@@ -3,7 +3,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 // The following input/output library is needed to work with files
 import java.io.*;
 
-
 public class ShowHS extends Actor
 {
     String name  = "";
@@ -19,7 +18,7 @@ public class ShowHS extends Actor
             {
                 MyWorld.l.setValue("");
                 BufferedReader br = new BufferedReader(new FileReader("names_scores.txt"));
-                // We read a line from the text file and store it as name
+                
                 String line = br.readLine();
                 while (line != null)
                 {
@@ -35,7 +34,7 @@ public class ShowHS extends Actor
                 }
                 br.close();
                 
-                String sentence = "HS: " + highScore + " by " + highName;
+                String sentence = highScore + ": " + highName;
                 MyWorld.l.setValue(sentence);
                 
                 MyWorld.c.setValue(0);

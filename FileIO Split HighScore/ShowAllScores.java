@@ -3,26 +3,17 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-/**
- * Write a description of class ShowAllScores here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 public class ShowAllScores extends Actor
 {
-    /**
-     * Act - do whatever the ShowAllScores wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
     public void act()
     {
         if (Greenfoot.mouseClicked(this))
         {
+            System.out.print("\f");
+            
             try
             {
                 BufferedReader br = new BufferedReader(new FileReader("names_scores.txt"));
-                // We read a line from the text file and store it as name
                 String line = br.readLine();
                 while (line != null)
                 {
