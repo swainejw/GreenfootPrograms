@@ -11,6 +11,10 @@ public class ShowHS extends Actor
     
     public void act() 
     {
+        name  = "";
+        highScore = 0;
+        highName = "";
+        
         // if someone clicks on the button
         if (Greenfoot.mouseClicked(this))
         {
