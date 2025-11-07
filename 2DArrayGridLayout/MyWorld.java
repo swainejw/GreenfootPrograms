@@ -1,24 +1,16 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-/**
- * Write a description of class MyWorld here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 public class MyWorld extends World
 {
     int[][] grid = new int[100][10];
     public static Actor[][] bg = new Actor[100][10];
-    /**
-     * Constructor for objects of class MyWorld.
-     * 
-     */
+
     public MyWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1, false); 
         
+        // Use 2D int array to define what objects should be where
         for (int x = 0; x < 100; x++)
         {
             for (int y = 0; y < 7; y++)
@@ -35,6 +27,7 @@ public class MyWorld extends World
             }
         }
         
+        // Randomize the brick towers
         int st = 4;
         int towerH = 1 + Greenfoot.getRandomNumber(6);
         int towerW = 1 + Greenfoot.getRandomNumber(3);
@@ -53,6 +46,7 @@ public class MyWorld extends World
             towerH = 1 + Greenfoot.getRandomNumber(6);
         }
             
+        // Create the object array based on the int grid
         for (int x = 0; x < 100; x++)
         {
             for (int y = 0; y < 10; y++)
@@ -84,6 +78,7 @@ public class MyWorld extends World
     
     public static void moveBGHoriz(int m)
     {
+        // move all of the bg objects over by 'm'
         for (int x = 0; x < 100; x++)
         {
             for (int y = 0; y < 10; y++)

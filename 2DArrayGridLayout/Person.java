@@ -1,20 +1,11 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-/**
- * Write a description of class Person here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 public class Person extends Actor
 {
     int edge = 130;
     int speed = 5;
     int dy = 0;
-    /**
-     * Act - do whatever the Person wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    
     public void act()
     {
         setLocation(getX(), getY() - dy);
@@ -24,6 +15,7 @@ public class Person extends Actor
             if (getX() < getWorld().getWidth() - edge)
             {
                 setLocation(getX() + speed, getY());
+                // check to see if hit brick wall
                 Brick bHR = (Brick) getOneObjectAtOffset(getImage().getWidth()/2 + speed, 0, Brick.class);
                 if (bHR != null) 
                 {
@@ -54,7 +46,7 @@ public class Person extends Actor
             else if (MyWorld.bg[0][0].getX() < 25)
             {
                 Brick bHL = (Brick) getOneObjectAtOffset(-getImage().getWidth()/2 - speed, 0, Brick.class);
-                if (bHL != null) 
+                if (bHL == null) 
                 {
                     MyWorld.moveBGHoriz(speed);
                 }

@@ -4,7 +4,7 @@ public class Sand extends Actor
 {
     public Sand()
     {
-        getImage().scale(60,40);
+        getImage().scale(Globals.width, Globals.height);
     }
     
     public void act()

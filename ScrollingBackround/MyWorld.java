@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class MyWorld extends World
 {
     BG1942 bg = new BG1942();
-    int bgMove = 20;
+    int bgMove = 67;
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -25,6 +25,6 @@ public class MyWorld extends World
     public void act()
     {
         bg.setLocation(bg.getX(), bg.getY() + bgMove);
-        System.out.println(bg.getY());
+        //System.out.println(bg.getY());
     }
 }

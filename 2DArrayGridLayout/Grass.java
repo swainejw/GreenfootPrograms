@@ -4,7 +4,7 @@ public class Grass extends Actor
 {
     public Grass()
     {
-        getImage().scale(60,40);
+        getImage().scale(Globals.width, Globals.height);
     }
     
     public void act()

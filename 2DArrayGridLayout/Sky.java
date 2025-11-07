@@ -4,7 +4,7 @@ public class Sky extends Actor
 {
     public Sky()
     {
-        getImage().scale(60,40);
+        getImage().scale(Globals.width, Globals.height);
     }
     
     public void act()

@@ -14,6 +14,7 @@ public class Rocket extends Actor
     }
     public void act() 
     {
+        // movement related to key downs
         if (Greenfoot.isKeyDown("left"))
         {
             setLocation(getX() - 4, getY());
@@ -30,6 +31,7 @@ public class Rocket extends Actor
         {
             setLocation(getX(), getY() - 4);
         }
+        
         
     }    
 }
