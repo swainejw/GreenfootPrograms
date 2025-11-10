@@ -74,6 +74,7 @@ public class MyWorld extends World
         }
             
         addObject(new Person(), 120, 253);
+        
     }
     
     public static void moveBGHoriz(int m)
