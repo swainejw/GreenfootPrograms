@@ -1,22 +1,22 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class MyWorld here.
+ * Write a description of class Globals here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class MyWorld extends World
+public class Globals
 {
-
+    public static Counter score = new Counter("Score: ");
+    
     /**
-     * Constructor for objects of class MyWorld.
+     * Constructor for objects of class Globals.
      * 
      */
-    public MyWorld()
+    public Globals()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(600, 400, 1); 
-        addObject(new Plane(getWidth()/2, getHeight()/2, -50, 0.01), getWidth()/2, 80);
+         
     }
 }

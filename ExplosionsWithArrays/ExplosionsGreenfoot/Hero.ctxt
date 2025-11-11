@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=Hero
+comment0.text=\n\ Write\ a\ description\ of\ class\ Hero\ here.\n\ \n\ @jswaine\n\ @Sept30,2021\n
+comment1.params=
+comment1.target=void\ act()
+comment1.text=\n\ Act\ -\ do\ whatever\ the\ Hero\ wants\ to\ do.\ This\ method\ is\ called\ whenever\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\n
+comment2.params=
+comment2.target=void\ moveHorizontally()
+comment2.text=\n\ This\ method\ is\ responsible\ for\ moving\ the\ hero\ left\ /\ right\n
+comment3.params=
+comment3.target=void\ shoot()
+comment3.text=\n\ This\ method\ is\ responsible\ for\ the\ hero\ shooting\ based\ on\ the\ timer\n
+numComments=4
