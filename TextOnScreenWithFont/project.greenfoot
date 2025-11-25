@@ -1,10 +1,11 @@
 #Greenfoot project file
+class.MyWorld.image=Wall.jpg
 dependency1.from=MyWorld
 dependency1.to=TextImage
 dependency1.type=UsesDependency
 editor.fx.0.height=695
 editor.fx.0.width=800
-editor.fx.0.x=42
+editor.fx.0.x=210
 editor.fx.0.y=25
 height=551
 package.numDependencies=1
@@ -40,5 +41,5 @@ target2.y=0
 version=3.1.0
 width=811
 world.lastInstantiated=MyWorld
-xPosition=162
-yPosition=123
+xPosition=843
+yPosition=282

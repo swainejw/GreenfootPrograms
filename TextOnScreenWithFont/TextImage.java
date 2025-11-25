@@ -23,7 +23,7 @@ public class TextImage extends Actor
 
         
         img.setFont(f);
-        img.setColor(new Color(225, 0, 255));
+        img.setColor(new Color(255, 255, 255));
         img.drawString(text, 10, 50);
 
         setImage(img);

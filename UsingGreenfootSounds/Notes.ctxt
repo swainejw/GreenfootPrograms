@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=Notes
+comment1.params=
+comment1.target=void\ act()
+comment2.params=sound\ amount
+comment2.target=void\ adjustVolume(greenfoot.GreenfootSound,\ int)
+comment2.text=Safely\ adjust\ volume\ (0\u2013100)
+numComments=3

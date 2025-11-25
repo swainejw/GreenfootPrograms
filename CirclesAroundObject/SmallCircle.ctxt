@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=SmallCircle
+comment1.params=a\ r
+comment1.target=SmallCircle(int,\ int)
+comment2.params=centerX\ centerY
+comment2.target=void\ updatePosition(int,\ int)
+numComments=3
