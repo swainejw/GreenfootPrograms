@@ -5,13 +5,15 @@ public class Barrel extends Actor
     int vSpeed = 0;
     int hSpeed = 2;
     boolean isJumped = false;
-    private final int T_SPEED = 3;
-    private final int B_SIZE = 19;
-    private final int GRAVITY = 1;
+    final int T_SPEED = 3;
+    final int GRAVITY = 1;
+    
+    public GreenfootImage b1 = new GreenfootImage("8bitBarrel.png");
+    public GreenfootImage b2 = new GreenfootImage("8bitBarrelOrange.png");
     
     public Barrel()
     {
-        getImage().scale(B_SIZE, B_SIZE);
+        setImage(b1);
     }
     
     public void act()

@@ -1,17 +1,18 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Brick here.
+ * Write a description of class Ladder here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Brick extends Actor
+public class Ladder extends Actor
 {
-    public Brick()
+    public Ladder()
     {
-        getImage().scale(60, 25);
+        getImage().scale(20, 100);
     }
+    
     public void act()
     {
         // Add your action code here.

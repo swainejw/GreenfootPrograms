@@ -8,6 +8,7 @@ public class Mario extends Actor
     final int JUMP_STRENGTH = -15; // how high to jump
     final int HORZ_MOVE_SPEED = 5; // how fast to move sideways
     final int ANIMATION_DELAY = 75; // how long to wait before switching pics
+    final int CLIMB_VALUE = 3;     // how fast to climb ladders
     
     // animation images
     GreenfootImage w1L = new GreenfootImage("walk-small1L.png");
@@ -20,6 +21,8 @@ public class Mario extends Actor
     GreenfootImage mJumpR = new GreenfootImage("mariojumpR.png");
     GreenfootImage mStandL = new GreenfootImage("mariostandL.png");
     GreenfootImage mStandR = new GreenfootImage("mariostandR.png");
+    GreenfootImage mClimb1 = new GreenfootImage("marioclimb1.png");
+    GreenfootImage mClimb2 = new GreenfootImage("marioclimb2.png");
     
     // to hold the last image before jumping
     GreenfootImage lastImage;
@@ -30,23 +33,31 @@ public class Mario extends Actor
     // to keep track of types of movement
     boolean firstMoveL = true;
     boolean firstMoveR = true;
-    boolean jump = true;
+    boolean firstClimb = true;
+    boolean jump = false;
+    boolean climb = false;
     char lastDirMoved = 'l';
     
     public Mario()
     {
+        // default image is standing looking left
         setImage(mStandL);
         // no barrels jumped yet!
         brlsJumped = 0;
         // allow left or right movement animation to occur
         firstMoveL = true;
         firstMoveR = true;
+        firstClimb = true;
+        // track if mario is climbing or jumping (for animation)
+        climb = false;
+        jump = false;
     }
 
     public void act()
     {
         applyGravityAndSnap();   // move vertically, snap out of blocks
         handleHorizontal();      // left/right with basic collision
+        handleVertical();        // ladders - up and down
         handleJumpInput();       // check jump AFTER snapping so onGround() is reliable
         isJumpOverBarrel();      // did he jump a barrel?
         checkTouchBarrel();      // did he touch a barrel (bad)
@@ -57,7 +68,7 @@ public class Mario extends Actor
     // ----------------------
     public void applyGravityAndSnap()
     {
-        // Apply vertical motion
+        // Apply vertical motion 
         setLocation(getX(), getY() + vSpeed);
 
         // If overlapping a block (inside the block), snap up until not overlapping
@@ -65,9 +76,9 @@ public class Mario extends Actor
         {
             vSpeed = 0;
             // Move up until the actor is no longer overlapping the block
-            while (isOverlappingBottom())
+            while (isOverlappingBottom() && !climb)
             {
-                setLocation(getX(), getY() - 1);
+                setLocation(getX(), getY() - 1); 
             }
             // After this loop, Mario should be sitting directly on top of the block (onGround() should be true)
         
@@ -76,7 +87,7 @@ public class Mario extends Actor
             firstMoveL = true;
             firstMoveR = true;
         }
-        else if (isOverlappingTop())
+        else if (isOverlappingTop() && !climb && jump)
         {
             vSpeed = 0;
             // Move up until the actor is no longer overlapping the block
@@ -84,6 +95,10 @@ public class Mario extends Actor
             {
                 setLocation(getX(), getY() + 1);
             }
+        }
+        else if (onLadder() && !jump)
+        {
+            vSpeed = 0;
         }
         else
         {
@@ -97,8 +112,13 @@ public class Mario extends Actor
         // Move right or left, but not if you are going to run into something
         if (Greenfoot.isKeyDown("right"))
         {
+            // for animation of climb
+            climb = false;
+            firstClimb = false;
+            // for animation of right movement
             startMoveRight();
-            if (!touchingSolidHoriz(HORZ_MOVE_SPEED))
+            // see if you're touching anything solid on the right side
+            if (!isTouchingSolidHoriz(HORZ_MOVE_SPEED))
             {
                 setLocation(getX() + HORZ_MOVE_SPEED, getY());
                 // allow teleportation on the lower platforms only
@@ -113,7 +133,7 @@ public class Mario extends Actor
                     setLocation(getX() - HORZ_MOVE_SPEED, getY());
                 }
                 
-                if (!jump)
+                if (!jump && !climb)
                 {
                     animateRunRight();
                 }
@@ -121,8 +141,13 @@ public class Mario extends Actor
         }
         else if (Greenfoot.isKeyDown("left"))
         {
+            // for animation of climb
+            climb = false;
+            firstClimb = false;
+            // for animation of left movement
             startMoveLeft();
-            if (!touchingSolidHoriz(-HORZ_MOVE_SPEED))
+            // see if you're touching anything solid on the left side
+            if (!isTouchingSolidHoriz(-HORZ_MOVE_SPEED))
             {
                 setLocation(getX() - HORZ_MOVE_SPEED, getY());
                 // allow teleportation on the lower platforms only
@@ -137,15 +162,15 @@ public class Mario extends Actor
                     setLocation(getX() + HORZ_MOVE_SPEED, getY());
                 }
                 
-                if (!jump)
+                if (!jump && !climb)
                 {
                     animateRunLeft();
                 }
             }
         }
-        else if (!jump)
+        else if (!jump && !climb)
         {
-            // set the proper stand image
+            // set the proper stand image (as long as you're not jumping or climbing)
             if (lastDirMoved == 'l')
             {
                 setImage(mStandL);
@@ -157,15 +182,45 @@ public class Mario extends Actor
             
             firstMoveR = true;
             firstMoveL = true;
+            firstClimb = true;
         }
     }
 
+    public void handleVertical()
+    {
+        if (onLadder() && !jump)
+        {
+            if (Greenfoot.isKeyDown("up"))
+            {
+                climb = true;
+                setLocation(getX(), getY() - CLIMB_VALUE);
+                animateClimb();
+            }
+        }
+        
+        if (onLadder() || isLadderBelow() && !jump) 
+        {
+            if (Greenfoot.isKeyDown("down"))
+            {
+                climb = true;
+                setLocation(getX(), getY() + CLIMB_VALUE);
+                BottomLadderBrick blb = (BottomLadderBrick) getOneIntersectingObject(BottomLadderBrick.class);
+                if (blb != null)
+                {
+                    setLocation(getX(), getY() - CLIMB_VALUE);
+                }
+                animateClimb();
+            }
+        }
+    }
+    
     public void handleJumpInput()
     {
         // onGround() is TRUE if we are 1 pixel above the brick (i.e. standing on a block)
         if (Greenfoot.isKeyDown("space") && onGround())
         {
             jump = true;
+            climb = false;
             Greenfoot.playSound("mariojump.mp3");
             
             lastImage = getImage();
@@ -187,7 +242,7 @@ public class Mario extends Actor
         // checks to see if Mario islock)
         if (!onGround())
         {
-            for (int y = 0; y < 150; y+=5)
+            for (int y = getImage().getWidth() + 5; y < 150; y+=5)
             {
                 Barrel ba = (Barrel) getOneObjectAtOffset(0, y, Barrel.class);
                 Brick br = (Brick) getOneObjectAtOffset(0, y, Brick.class);
@@ -199,6 +254,7 @@ public class Mario extends Actor
                 {
                     brlsJumped++;
                     MyWorld.score.setValue(brlsJumped);
+                    ba.setImage(ba.b2);
                     ba.isJumped = true;
                     return true;
                 }
@@ -277,7 +333,7 @@ public class Mario extends Actor
     }
 
     // Horizontal collision check (single-point)
-    public boolean touchingSolidHoriz(int dx)
+    public boolean isTouchingSolidHoriz(int dx)
     {
         // check the left edge OR the right edge, depending on direction
         int offset = 0;
@@ -302,6 +358,36 @@ public class Mario extends Actor
         }
     }
 
+    public boolean onLadder()
+    {
+        Ladder la = (Ladder) getOneIntersectingObject(Ladder.class);
+        if (la != null)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+    }
+
+    public boolean isLadderBelow()
+    {
+        
+        int offset = getImage().getHeight()/2;
+        Ladder la = (Ladder) getOneObjectAtOffset(0, offset + 5, Ladder.class);
+        if (la != null)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+    }
+    
     public void animateRunLeft()
     {
         if (getImage() == w1L && tAni.millisElapsed() > ANIMATION_DELAY)
@@ -361,4 +447,24 @@ public class Mario extends Actor
             setImage(w1L);
         }
     }
+    
+    public void animateClimb()
+    {   
+        if (firstClimb == true)
+        {
+            firstClimb = false;
+            setImage(mClimb1);
+        }
+        if (getImage() == mClimb1 && tAni.millisElapsed() > ANIMATION_DELAY)
+        {
+            setImage(mClimb2);
+            tAni.mark();
+        }
+        else if (getImage() == mClimb2 && tAni.millisElapsed() > ANIMATION_DELAY)
+        {
+            setImage(mClimb1);
+            tAni.mark();
+        }
+    }
+    
 }
