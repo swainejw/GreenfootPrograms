@@ -16,6 +16,8 @@ public class Rock extends Actor
         LobsterTrap lt = (LobsterTrap) getOneIntersectingObject(LobsterTrap.class);
         if (lt != null)
         {
+            // add score
+            MyWorld.scoreC.add(lt.value);
             getWorld().removeObject(lt);
             getWorld().removeObject(this);
             return;
