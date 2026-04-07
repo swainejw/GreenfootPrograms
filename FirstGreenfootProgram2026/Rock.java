@@ -18,6 +18,10 @@ public class Rock extends Actor
         {
             // add score
             MyWorld.scoreC.add(lt.value);
+            if (MyWorld.scoreC.getValue() == 30)
+            {
+                Greenfoot.setWorld(new WinWorld());
+            }
             getWorld().removeObject(lt);
             getWorld().removeObject(this);
             return;
