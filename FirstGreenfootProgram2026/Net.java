@@ -13,5 +13,17 @@ public class Net extends Actor
             getWorld().removeObject(this);
             return;
         }
+        
+        Lobster l = (Lobster) getOneIntersectingObject(Lobster.class);
+        if (l != null)
+        {
+            MyWorld.livesC.add(-1);
+            if (MyWorld.livesC.getValue() == 0)
+            {
+                Greenfoot.setWorld(new LoseWorld());
+            }
+            getWorld().removeObject(this);
+            return;
+        }
     }
 }
