@@ -22,6 +22,7 @@ public class Rock extends Actor
             {
                 Greenfoot.setWorld(new WinWorld());
             }
+            getWorld().addObject(new Explosion(), getX(), getY());
             getWorld().removeObject(lt);
             getWorld().removeObject(this);
             return;

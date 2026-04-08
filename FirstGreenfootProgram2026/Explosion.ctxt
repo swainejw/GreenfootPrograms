@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=Explosion
+comment0.text=\n\ Objects\ from\ this\ class\ will\ simply\ appear\ on\ the\ screen,\n\ scroll\ through\ a\ bunch\ of\ images,\ and\ then\ disappear,\ making\n\ a\ "boom"\ sound\ in\ the\ process.\n\ \n\ @author\ \ mrjswaine\n\ @date\ \ \ \ October\ 4,\ 2019\n
+comment1.params=
+comment1.target=Explosion()
+comment1.text=\n\ The\ constructor\ plays\ the\ sound,\ sets\ the\ first\ image\ to\ image\ one,\ and\n\ starts\ the\ timer.\n
+comment2.params=
+comment2.target=void\ act()
+comment2.text=\n\ Scrolls\ through\ the\ images\n
+numComments=3
