@@ -3,7 +3,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class LobsterTrap extends Actor
 {
     int speed = 3;
-    int value = 10;
+    int value = 500;
     int bulletDelay = 3000 + Greenfoot.getRandomNumber(2000);
     private SimpleTimer t = new SimpleTimer();
     

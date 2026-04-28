@@ -37,7 +37,7 @@ public class Banana extends Actor
             getWorld().addObject(new FoundIt(), 200, 350);
         }
         
-        Dolphin d = (Dolphin) getOneObjectAtOffset(0, 50, Dolphin.class);
+        Dolphin d = (Dolphin) getOneObjectAtOffset(100, 100, Dolphin.class);
         if (d != null)
         {
             getWorld().addObject(new FoundIt(), 400, 350);

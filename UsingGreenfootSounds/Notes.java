@@ -28,6 +28,12 @@ public class Notes extends Actor
             music.stop();
             Greenfoot.delay(10);
         }
+        
+        // Pause the looping music
+        if (Greenfoot.isKeyDown("4"))
+        {
+            music.pause();
+        }
 
         // Volume up
         if (Greenfoot.isKeyDown("up"))

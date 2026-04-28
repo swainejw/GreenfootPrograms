@@ -17,7 +17,7 @@ public class Rock extends Actor
         if (lt != null)
         {
             // add score
-            MyWorld.scoreC.add(lt.value);
+            MyWorld.scoreC.setValue(MyWorld.scoreC.getValue() + lt.value);
             if (MyWorld.scoreC.getValue() == 30)
             {
                 Greenfoot.setWorld(new WinWorld());
