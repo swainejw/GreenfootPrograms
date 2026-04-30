@@ -34,11 +34,17 @@ public class Steve extends Actor
         Brick b = (Brick) getOneIntersectingObject(Brick.class);
         if (b != null)
         {
-            // Snap to top of brick
-            // the middle of the brick - half the height of the brick - half the height of steve
-            setLocation(getX(), b.getY() - b.getImage().getHeight()/2 - getImage().getHeight()/2);
+            if (vSpeed < 0)
+            {
+                setLocation(getX(), b.getY() + b.getImage().getHeight()/2 + getImage().getHeight()/2);
+                onGround = false;
+            }
+            else 
+            {
+                setLocation(getX(), b.getY() - b.getImage().getHeight()/2 - getImage().getHeight()/2);
+                onGround = true;
+            }
             vSpeed = 0;
-            onGround = true;
         }
         else
         {
