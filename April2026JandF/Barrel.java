@@ -10,6 +10,8 @@ public class Barrel extends Actor
 {
     int vSpeed = 0;
     int hSpeed = -3;
+    int value = 200;
+    boolean isJumped = false;
     
     public Barrel()
     {
