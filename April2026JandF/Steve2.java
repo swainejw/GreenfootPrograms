@@ -66,7 +66,7 @@ public class Steve2 extends Actor
     {
         for (int x = -3; x < 3; x++)
         {
-            for (int y = 5; y < 100; y++)
+            for (int y = 5; y < 150; y++)
             {
                 Barrel b = (Barrel) getOneObjectAtOffset(x, y, Barrel.class);
                 if (b != null && b.isJumped == false)
