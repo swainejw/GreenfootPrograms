@@ -10,6 +10,7 @@ public class Steve extends Actor
         moveLR();
         moveUD();
         checkJump();
+        checkBarrel();
     }
     
     public void moveLR()
@@ -56,8 +57,25 @@ public class Steve extends Actor
     {
         if (Greenfoot.isKeyDown("space") && onGround)
         {
-            vSpeed = -20;
+            vSpeed = -13;
             onGround = false;
         }
+    }
+    
+    public void checkBarrel()
+    {
+        for (int x = -3; x < 3; x++)
+        {
+            for (int y = 5; y < 150; y++)
+            {
+                Barrel b = (Barrel) getOneObjectAtOffset(x, y, Barrel.class);
+                if (b != null && b.isJumped == false)
+                {
+                    MyWorld.score.setValue(MyWorld.score.getValue() + b.value);
+                    b.isJumped = true;
+                }
+            }
+        }
+    
     }
 }

@@ -1,18 +1,26 @@
 import greenfoot.*;
 
-public class Steve2 extends Actor
+public class StevieLadders extends Actor
 {
     int vSpeed = 0;
     boolean onGround = false;
+    boolean onLadder = false;
 
     public void act()
     {
+        checkLadder();
         moveLR();
         moveUD();
         checkJump();
         checkBarrel();
     }
-    
+
+    public void checkLadder()
+    {
+        Ladder l = (Ladder) getOneIntersectingObject(Ladder.class);
+        onLadder = (l != null);
+    }
+
     public void moveLR()
     {
         if (Greenfoot.isKeyDown("left"))
@@ -24,14 +32,31 @@ public class Steve2 extends Actor
             setLocation(getX() + 5, getY());
         }
     }
-    
+
     public void moveUD()
     {
-        // Apply gravity
+        // If on ladder → manual movement, NO gravity
+        if (onLadder)
+        {
+            vSpeed = 0; // cancel falling
+
+            if (Greenfoot.isKeyDown("up"))
+            {
+                setLocation(getX(), getY() - 4);
+            }
+            else if (Greenfoot.isKeyDown("down"))
+            {
+                setLocation(getX(), getY() + 4);
+            }
+
+            onGround = false; // important so jump doesn't trigger weirdly
+            return; // skip gravity
+        }
+
+        // NORMAL GRAVITY (your original code)
         vSpeed += 1;
         setLocation(getX(), getY() + vSpeed);
 
-        // Check if standing on brick
         Brick b = (Brick) getOneIntersectingObject(Brick.class);
         if (b != null)
         {
@@ -52,16 +77,16 @@ public class Steve2 extends Actor
             onGround = false;
         }
     }
-    
+
     public void checkJump()
     {
         if (Greenfoot.isKeyDown("space") && onGround)
         {
-            vSpeed = -15;
+            vSpeed = -18;
             onGround = false;
         }
     }
-    
+
     public void checkBarrel()
     {
         for (int x = -3; x < 3; x++)
@@ -71,11 +96,18 @@ public class Steve2 extends Actor
                 Barrel b = (Barrel) getOneObjectAtOffset(x, y, Barrel.class);
                 if (b != null && b.isJumped == false)
                 {
-                    MyWorld2.score.setValue(MyWorld2.score.getValue() + b.value);
+                    MyWorld.score.setValue(MyWorld.score.getValue() + b.value);
                     b.isJumped = true;
                 }
             }
         }
-    
+
+        Barrel b1 = (Barrel) getOneIntersectingObject(Barrel.class);
+        if (b1 != null)
+        {
+            getWorld().removeObject(this);
+            setLocation(40, getWorld().getHeight() - 50);
+        }
+
     }
 }

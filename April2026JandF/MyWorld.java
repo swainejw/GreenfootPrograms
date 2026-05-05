@@ -2,14 +2,24 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 public class MyWorld extends World
 {
-    public static Steve stv = new Steve();
+    public static StevieLadders stv = new StevieLadders();
     SimpleTimer t = new SimpleTimer();
+    public static Counter score = new Counter();
     
     public MyWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(600, 400, 1);
+        super(600, 600, 1);
+        setPaintOrder(Steve.class);
+        
+        addObject(new Ladder(), 360, 540);
         addObject(stv, 40, getHeight() - 50);
+        
+        addObject(score, 40, 50);
+        score.setValue(0);
+        
+        
+        
         // Make a row of bricks (like a platform) at y-coord 30 above the bottom)
         // offset = 25, spacing =  50
         for (int x = 0; x < 15; x++)
