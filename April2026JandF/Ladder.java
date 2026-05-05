@@ -5,6 +5,6 @@ public class Ladder extends Actor
 {
     public Ladder()
     {
-        getImage().scale(20, 144);
+        getImage().scale(20, 110);
     }
 }
