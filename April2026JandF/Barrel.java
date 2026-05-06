@@ -15,7 +15,7 @@ public class Barrel extends Actor
     
     public Barrel()
     {
-        getImage().scale(30,30);
+        getImage().scale(20,20);
     }
     
     public void act()
@@ -24,7 +24,7 @@ public class Barrel extends Actor
         horizMovement();
         vertMovement();
         
-        if (getX() < 5 && getY() > 330)
+        if (getX() < 5 && getY() > getWorld().getHeight() - 70)
         {
             getWorld().removeObject(this);
         }

@@ -5,7 +5,14 @@ public class StevieLadders extends Actor
     int vSpeed = 0;
     boolean onGround = false;
     boolean onLadder = false;
+    int dir = 10;
+    SimpleTimer t = new SimpleTimer();
 
+    public StevieLadders()
+    {
+        getImage().scale(20,40);
+    }
+    
     public void act()
     {
         checkLadder();
@@ -13,6 +20,8 @@ public class StevieLadders extends Actor
         moveUD();
         checkJump();
         checkBarrel();
+        checkSpider();
+        checkShoot();
     }
 
     public void checkLadder()
@@ -26,10 +35,12 @@ public class StevieLadders extends Actor
         if (Greenfoot.isKeyDown("left"))
         {
             setLocation(getX() - 5, getY());
+            dir = -10;
         }
         else if (Greenfoot.isKeyDown("right"))
         {
             setLocation(getX() + 5, getY());
+            dir = 10;
         }
     }
 
@@ -80,7 +91,7 @@ public class StevieLadders extends Actor
 
     public void checkJump()
     {
-        if (Greenfoot.isKeyDown("space") && onGround)
+        if (Greenfoot.isKeyDown("up") && onGround)
         {
             vSpeed = -18;
             onGround = false;
@@ -96,7 +107,7 @@ public class StevieLadders extends Actor
                 Barrel b = (Barrel) getOneObjectAtOffset(x, y, Barrel.class);
                 if (b != null && b.isJumped == false)
                 {
-                    MyWorld.score.setValue(MyWorld.score.getValue() + b.value);
+                    MyWorld.cScore.setValue(MyWorld.cScore.getValue() + b.value);
                     b.isJumped = true;
                 }
             }
@@ -105,9 +116,37 @@ public class StevieLadders extends Actor
         Barrel b1 = (Barrel) getOneIntersectingObject(Barrel.class);
         if (b1 != null)
         {
-            getWorld().removeObject(this);
+            MyWorld.cLives.add(-1);
+            if (MyWorld.cLives.getValue() == 0)
+            {
+                Greenfoot.setWorld(new LoseWorld());
+            }
             setLocation(40, getWorld().getHeight() - 50);
+            getWorld().removeObject(b1);
         }
 
+    }
+
+    public void checkSpider()
+    {
+        Spider s = (Spider) getOneIntersectingObject(Spider.class);
+        if (s != null)
+        {
+            MyWorld.cLives.add(-1);
+            if (MyWorld.cLives.getValue() == 0)
+            {
+                Greenfoot.setWorld(new LoseWorld());
+            }
+            setLocation(40, getWorld().getHeight() - 50);
+        }
+    }
+    
+    public void checkShoot()
+    {
+        if (Greenfoot.isKeyDown("space") && t.millisElapsed() > 300)
+        {
+            t.mark();
+            getWorld().addObject(new Arrow(dir), getX(), getY());
+        }
     }
 }
