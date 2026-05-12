@@ -12,24 +12,25 @@ public class Barrel extends Actor
     int hSpeed = -3;
     int value = 200;
     boolean isJumped = false;
-    
+
     public Barrel()
-    {
+    { 
         getImage().scale(20,20);
     }
-    
+
     public void act()
     {
         turn(-2);
         horizMovement();
         vertMovement();
-        
+
+        // if the barrel gets to the bottom edge, remove it
         if (getX() < 5 && getY() > getWorld().getHeight() - 70)
         {
             getWorld().removeObject(this);
         }
     }
-    
+
     public void horizMovement()
     {
         setLocation(getX() + hSpeed, getY());
@@ -38,7 +39,7 @@ public class Barrel extends Actor
             hSpeed *= -1;
         }
     }
-    
+
     public void vertMovement()
     {
         // Apply gravity

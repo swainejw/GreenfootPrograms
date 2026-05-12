@@ -8,8 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MyWorld extends World
 {
-    BG1942 bg = new BG1942();
-    int bgMove = 20;
+    public static Label l = new Label("", 50);
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -17,17 +16,9 @@ public class MyWorld extends World
     public MyWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(600, 400, 1, false); 
-        addObject(bg, getWidth()/2, -6000);
-        addObject(new Rocket(), getWidth()/2, 350);
-    }
-    
-    public void act()
-    {
-        if (bg.getY() < 6000)
-        {
-            bg.setLocation(bg.getX(), bg.getY() + bgMove);
-        }
-        System.out.println(bg.getY());
+        super(600, 400, 1); 
+        addObject(new Button(), 300, 100);
+        addObject(l, 300, 300);
+        l.setValue("");
     }
 }
