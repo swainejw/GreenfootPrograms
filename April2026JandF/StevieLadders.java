@@ -16,6 +16,7 @@ public class StevieLadders extends Actor
     public void act()
     {
         checkLadder();
+        checkLadderBelow();
         moveLR();
         moveUD();
         checkJump();
@@ -28,6 +29,19 @@ public class StevieLadders extends Actor
     {
         Ladder l = (Ladder) getOneIntersectingObject(Ladder.class);
         onLadder = (l != null);
+    }
+    
+    public boolean checkLadderBelow()
+    {
+        Ladder lbelow = (Ladder) getOneObjectAtOffset(0, getImage().getHeight()/2 + 10, Ladder.class);
+        System.out.println(getX());
+        if (lbelow != null)
+        {
+            //System.out.println("l below");
+            return true;
+        }
+        //System.out.println("no l below");
+        return false;
     }
 
     public void moveLR()
